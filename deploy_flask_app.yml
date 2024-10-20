@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Stop the running Docker container (if exists)
+      shell: docker stop flask_app || true
+      
+    - name: Remove the Docker container (if exists)
+      shell: docker rm flask_app || true
+
+    - name: Run the Flask app in Docker
+      shell: docker run -d -p 5000:5000 --name flask_app flask_app:latest
+
